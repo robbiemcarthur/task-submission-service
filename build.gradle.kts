@@ -4,7 +4,7 @@ plugins {
     java
 }
 
-group = "com.robbiemcarthur"
+group = "com.robbiemcarthur.taskprocessingservice"
 version = "0.0.1-SNAPSHOT"
 java.sourceCompatibility = JavaVersion.VERSION_21
 
@@ -13,20 +13,19 @@ repositories {
 }
 
 dependencies {
-    // Implementation dependencies
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springframework.boot:spring-boot-starter-amqp")
-    implementation("org.projectlombok:lombok:1.18.30")
+    implementation("org.springframework.modulith:spring-modulith-starter-core:1.2.0")
+    implementation ("org.springframework.modulith:spring-modulith-events-core:1.2.0")
+
     runtimeOnly("org.postgresql:postgresql")
 
-    annotationProcessor("org.projectlombok:lombok:1.18.30")
-
-    testImplementation("org.springframework.boot:spring-boot-starter-test") {
-        exclude(module = "mockito-core")
-    }
-    testImplementation("org.mockito:mockito-core:5.2.0")
-    testImplementation("org.mockito:mockito-junit-jupiter:5.2.0")
+    testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testImplementation("org.mockito:mockito-core")
+    testImplementation("org.mockito:mockito-junit-jupiter")
+    testImplementation("jakarta.inject:jakarta.inject-api:2.0.1")
+    testImplementation("com.h2database:h2:2.2.224")
 }
 
 tasks.withType<Test> {
